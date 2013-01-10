@@ -1,0 +1,19 @@
+connection: &connection
+  adapter: postgresql
+  encoding: utf8
+  pool: 5
+  username: postgre
+  password: postgre
+  host: localhost
+
+development:
+  <<: *connection
+  database: Chat_development
+
+test:
+  <<: *connection
+  database: Chat_test
+
+production:
+  <<: *connection
+  database: Chat_production

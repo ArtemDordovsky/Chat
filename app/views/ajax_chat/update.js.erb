@@ -1,0 +1,7 @@
+$('document').ready(
+  function() {
+    setInterval(
+      function() {
+        $("#messages").html("<%= escape_javascript( render(:partial => "messages") ) %>");
+      }, 2000);
+});
