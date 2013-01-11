@@ -7,7 +7,8 @@ Chat::Application.routes.draw do
   resources :sessions
   resources :ajax_chat
   match '/ajax_chat' => "ajax_chat#index", :as => "ajax_chat"
-  match '/chat_room' => "sessions#index", :as => "chat_room"  
+  match '/chat_room' => "sessions#index", :as => "chat_room"
+  match '/messages' => "ajax_chat#messages", :as => "messages"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
