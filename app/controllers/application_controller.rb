@@ -27,4 +27,15 @@ class ApplicationController < ActionController::Base
   def access_denied
     redirect_to login_path, :notice => "Please log in to continue" and return false
   end
+
+  def whos_online
+    @whos_online = Array.new()
+    sessions = ActiveRecord::SessionStore::Session.find(:all)
+    sessions.each do |session|
+      user_data = session.data
+      @whos_online << User.find(user_data["user_id"]) if user_data["user_id"]
+    end
+    return @whos_online
+  end
+
 end

@@ -1,12 +1,15 @@
-<h2>Welcome to Ajax Chat</h2>
+<h2 id="header">Welcome to Ajax Chat</h2>
 
-<div id="messages">
-  <%= render :partial => 'messages' %>
+<div id="middle">
+  <div id="messages" class="content">
+    <%= render :partial => 'messages' %>
+  </div>
+
+  <div id="new_message" class="content">
+    <%= render :partial => 'new' %>
+  </div>
 </div>
 
-<div id="new_message">
-  <%= render :partial => 'new' %>  
-</div>
-
-<div id="users">
+<div id="users_online">
+  <%= render :partial => 'users_online' %>
 </div>

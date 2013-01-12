@@ -6,3 +6,4 @@ Chat::Application.config.session_store :cookie_store, key: '_Chat_session'
 # which shouldn't be used to store highly confidential information
 # (create the session table with "rails generate session_migration")
 # Chat::Application.config.session_store :active_record_store
+Chat::Application.config.session_store :active_record_store

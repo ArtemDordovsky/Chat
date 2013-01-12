@@ -20,3 +20,10 @@ $('document').ready(
         $("#messages").load("messages");
       }, 2000);
 });
+$('document').ready(
+  function() {
+    setInterval(
+      function() {
+        $("#users_online").load("users_online");
+      }, 10000);
+});
