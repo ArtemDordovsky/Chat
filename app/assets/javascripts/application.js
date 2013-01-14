@@ -13,17 +13,28 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-$('document').ready(
-  function() {
-    setInterval(
-      function() {
-        $("#messages").load("messages");
-      }, 2000);
-});
-$('document').ready(
-  function() {
-    setInterval(
-      function() {
-        $("#users_online").load("users_online");
-      }, 10000);
-});
+$(function() {
+  setInterval(
+    function() {
+      $.ajax({
+        type: "GET",
+        url: "messages",
+        dataType: "html",
+        success: function(response) {
+          $("#messages").html(response)
+        }
+      })
+    }, 2000);
+  setInterval(
+    function() {
+      $.ajax({
+        type: "GET",
+        url: "users_online",
+        dataType: "html",
+        success: function(response) {
+          $("#users_online").html(response)
+        }
+      })
+    }, 10000);
+  }
+);

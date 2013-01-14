@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   # Filter method to enforce a login requirement
   # Apply as a before_filter on any controller you want to protect
   def authenticate
-    logged_in? ? true : access_denied
+    logged_in? || access_denied
   end
 
   # Predicate method to test for a logged in user    
@@ -28,14 +28,8 @@ class ApplicationController < ActionController::Base
     redirect_to login_path, :notice => "Please log in to continue" and return false
   end
 
-  def whos_online
-    @whos_online = Array.new()
-    sessions = ActiveRecord::SessionStore::Session.find(:all)
-    sessions.each do |session|
-      user_data = session.data
-      @whos_online << User.find(user_data["user_id"]) if user_data["user_id"]
-    end
-    return @whos_online
-  end
+#    def users_online
+#      @users_online = User.users_online
+#    end
 
 end

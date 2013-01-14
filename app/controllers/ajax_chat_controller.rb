@@ -1,6 +1,5 @@
 class AjaxChatController < ApplicationController
-  before_filter :authenticate, :only => :index
-  before_filter :whos_online
+  before_filter :authenticate
   before_filter :messages_all, :only => [:index, :messages]
 
   def index
@@ -20,12 +19,9 @@ class AjaxChatController < ApplicationController
   def messages
   end
 
-  def users_online
-    @users = User.all
-  end
-
+  private
   def messages_all
-    @messages = Message.all
+    @messages = Message.limit(5).all
   end
 
 end

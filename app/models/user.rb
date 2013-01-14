@@ -8,14 +8,10 @@ class User < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_presence_of :email
   validates_uniqueness_of :email
-  
+
   def self.authenticate(email, password)
     user = find_by_email(email)
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
-    else
-      nil
-    end
+    user if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
   end
   
   def encrypt_password
@@ -24,4 +20,16 @@ class User < ActiveRecord::Base
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
   end
+
+  def self.users_online
+    find(users)
+  end
+
+  def self.users
+    sessions = ActiveRecord::SessionStore::Session.select(:data).all
+    users_ids = sessions.inject([]) do |result, session|
+      result << session.data["user_id"] if session.data["user_id"]
+    end
+  end
+
 end

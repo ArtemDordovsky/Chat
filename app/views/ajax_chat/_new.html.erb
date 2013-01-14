@@ -1,7 +1,7 @@
 <%= form_for(:message, :url => { :action => 'create' }, :remote => true) do |f| %>
   <div>
     <%= f.label :message_text %>
-    <%= f.text_field :message_text %>
+    <%= f.text_field :message_text, class: "input" %>
     <%= f.submit %>
   </div>
 <% end %>
