@@ -1,11 +1,7 @@
 class SessionsController < ApplicationController
-  before_filter :authenticate, :only => :index
-  def index
-  end
-  
   def new
   end
-  
+
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
@@ -19,6 +15,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    ActiveRecord::SessionStore::Session.delete(current_user)
     redirect_to root_url, :notice => "Logged out!"
   end
 end

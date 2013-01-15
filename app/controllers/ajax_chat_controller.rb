@@ -1,5 +1,5 @@
 class AjaxChatController < ApplicationController
-  before_filter :authenticate
+  before_filter :authenticate, :only => [:index, :new, :create]
   before_filter :messages_all, :only => [:index, :messages]
 
   def index
