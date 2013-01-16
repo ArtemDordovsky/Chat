@@ -6,6 +6,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:email], params[:password])
     if user
       session[:user_id] = user.id
+      cookies[:last_update] = Time.now
       redirect_to :chat_room, :notice => "Logged in!"
     else
       flash.now.alert = "Invalid email or password"

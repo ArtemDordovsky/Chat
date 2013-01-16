@@ -23,12 +23,12 @@ class User < ActiveRecord::Base
 
   def self.users_online
     find(users) if users
+
   end
 
   def self.users
     sessions = ActiveRecord::SessionStore::Session.select(:data).all
     users_ids = sessions.inject([]) do |result, session|
-      p session.data["user_id"]
       result << session.data["user_id"] if session
     end
   end

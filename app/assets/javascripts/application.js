@@ -21,7 +21,7 @@ $(function() {
         url: "messages",
         dataType: "html",
         success: function(response) {
-          $("#messages").html(response)
+          $("#chat").append(response)
         }
       })
     }, 2000);

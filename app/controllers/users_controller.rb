@@ -17,6 +17,6 @@ class UsersController < ApplicationController
   end
 
   def users_online
-    @users_online = User.users_online
+    @users_online = User.users_online || []
   end
 end
