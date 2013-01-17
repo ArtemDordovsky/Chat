@@ -3,14 +3,16 @@ Chat::Application.routes.draw do
   get "log_in" => "sessions#new", :as => "log_in"
   get "sign_up" => "users#new", :as => "sign_up"
   root :to => "sessions#new"
-  resources :ajax_chat
-  resources :sessions
-  resources :users
+  namespace :ajax do
+    resources :messages do
+      get :messages, on: :collection
+    end
+  end
+  resources :users do
+    get :users_online, on: :collection
+  end
   resources :chat_rooms, :only => :index
-  match '/ajax_chat' => "ajax_chat#index", :as => "ajax_chat"
-  match '/chat_room' => "chat_rooms#index", :as => "chat_room"
-  match '/messages' => "ajax_chat#messages", :as => "messages"
-  match '/users_online' => "users#users_online", :as => "users_online"
+  resources :sessions, :only => [:new, :create, :destroy]
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

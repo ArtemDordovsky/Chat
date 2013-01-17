@@ -18,7 +18,7 @@ $(function() {
     function() {
       $.ajax({
         type: "GET",
-        url: "messages",
+        url: "messages/messages",
         dataType: "html",
         success: function(response) {
           $("#chat").append(response)
@@ -29,7 +29,7 @@ $(function() {
     function() {
       $.ajax({
         type: "GET",
-        url: "users_online",
+        url: "/users/users_online",
         dataType: "html",
         success: function(response) {
           $("#users_online").html(response)

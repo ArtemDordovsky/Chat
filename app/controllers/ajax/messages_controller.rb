@@ -1,4 +1,4 @@
-class AjaxChatController < ApplicationController
+class Ajax::MessagesController < ApplicationController
   before_filter :authenticate
   before_filter :messages_all, :only => [:index, :messages]
   after_filter :last_update, :only => [:index, :messages]
@@ -46,5 +46,4 @@ class AjaxChatController < ApplicationController
       message_last_create.created_at.to_i > cookies[:last_update].to_time.to_i
     end
   end
-
 end

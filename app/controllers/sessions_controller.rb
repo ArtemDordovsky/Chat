@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       cookies[:last_update] = Time.now
-      redirect_to :chat_room, :notice => "Logged in!"
+      redirect_to :chat_rooms, :notice => "Logged in!"
     else
       flash.now.alert = "Invalid email or password"
       render "new"
