@@ -18,10 +18,10 @@ $(function() {
     function() {
       $.ajax({
         type: "GET",
-        url: "messages/messages",
+        url: "/ajax/messages/messages",
         dataType: "html",
         success: function(response) {
-          $("#chat").append(response)
+          $("#chat").append(response).scrollTop(9999);
         }
       })
     }, 2000);
@@ -38,3 +38,11 @@ $(function() {
     }, 10000);
   }
 );
+$(function() {
+    onbeforeunload = function() {
+      $.ajax({
+        type: "DELETE",
+        url: "/log_out"
+    });
+  }
+});

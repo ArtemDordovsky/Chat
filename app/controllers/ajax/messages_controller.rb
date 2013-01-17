@@ -23,23 +23,21 @@ class Ajax::MessagesController < ApplicationController
   private
   def messages_all
     if compare_last_message_and_last_update?
-      @messages = Message.where('id > ?', cookies[:last_update])
+      @messages = Message.where('id > ?', Marshal.load(cookies[:last_update]))
     else
       @messages = []
     end
   end
 
   def last_update
-    message_last = Message.last.id
     if compare_last_message_and_last_update?
-      cookies[:last_update] = message_last
+      cookies[:last_update] = Marshal.dump(Message.last.id)
     end
   end
 
   def compare_last_message_and_last_update?
-    message_last_create = Message.last.id
-    if message_last_create and cookies[:last_update]
-      message_last_create > cookies[:last_update].to_i
+    if Message.last.id and cookies[:last_update]
+      Message.last.id > Marshal.load(cookies[:last_update]).to_i
     end
   end
 end
