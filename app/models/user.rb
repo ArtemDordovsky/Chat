@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   end
 
   def self.users
-    sessions = ActiveRecord::SessionStore::Session.select(:data).all
+    sessions = ActiveRecord::SessionStore::Session.select([:data, :updated_at]).all
     users_ids = sessions.inject([]) do |result, session|
       result << session.data["user_id"] if session
     end

@@ -13,7 +13,7 @@ class Ajax::MessagesController < ApplicationController
   def create
     @message = Message.new(:message_text => params[:message][:message_text], :user => current_user)
     if @message.save
-      messages_all
+      messages
     end
   end
 
@@ -23,27 +23,23 @@ class Ajax::MessagesController < ApplicationController
   private
   def messages_all
     if compare_last_message_and_last_update?
-      last_message_time = Time.zone.parse(cookies[:last_update]).utc
-      @messages = Message.where('created_at > ?', last_message_time.to_s)
+      @messages = Message.where('id > ?', cookies[:last_update])
     else
       @messages = []
     end
   end
 
   def last_update
-    message_last_create = Message.select(:created_at).first
+    message_last = Message.last.id
     if compare_last_message_and_last_update?
-      cookies[:last_update] = message_last_create.created_at
-      p cookies[:last_update]
-    else
-      cookies[:last_update] = Time.now
+      cookies[:last_update] = message_last
     end
   end
 
   def compare_last_message_and_last_update?
-    message_last_create = Message.select(:created_at).first
+    message_last_create = Message.last.id
     if message_last_create and cookies[:last_update]
-      message_last_create.created_at.to_i > cookies[:last_update].to_time.to_i
+      message_last_create > cookies[:last_update].to_i
     end
   end
 end
