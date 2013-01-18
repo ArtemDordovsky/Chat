@@ -38,11 +38,3 @@ $(function() {
     }, 10000);
   }
 );
-$(function() {
-    onbeforeunload = function() {
-      $.ajax({
-        type: "DELETE",
-        url: "/log_out"
-    });
-  }
-});
