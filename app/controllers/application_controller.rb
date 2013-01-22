@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
   def current_user
     session = ActiveRecord::SessionStore::Session.select(:data).where('session_id = ?', cookies[:_session_id]).last
-    @current_user ||= User.find(session.data["user_id"]) if session.data["user_id"]
+    @current_user = User.find(session.data["user_id"]) if session
   end
 
   helper_method :current_user

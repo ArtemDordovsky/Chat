@@ -13,6 +13,10 @@ Chat::Application.routes.draw do
   end
   resources :chat_rooms, :only => :index
   resources :sessions, :only => [:new, :create, :destroy]
+
+  namespace :comet do
+    resources :messages
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

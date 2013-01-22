@@ -1,0 +1,10 @@
+<div id="comet_chat">
+  <%= render @messages %>
+</div>
+
+<div id="bottomPanel">
+  <%= form_for @message, :url => {:action => 'create'}, :remote => true do |f| %>
+    <%= f.text_field :message_text, id: "message_text" %>
+    <%= f.submit "Send" %>
+  <% end %>
+</div>

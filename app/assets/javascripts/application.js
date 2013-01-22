@@ -21,10 +21,11 @@ $(function() {
         url: "/ajax/messages/messages",
         dataType: "html",
         success: function(response) {
-          $("#chat").append(response).scrollTop(9999);
+          $("#ajax_chat").append(response).scrollTop(9999);
         }
       })
     }, 2000);
+
   setInterval(
     function() {
       $.ajax({
@@ -36,5 +37,9 @@ $(function() {
         }
       })
     }, 10000);
-  }
-);
+
+  var faye = new Faye.Client('http://localhost:9292/faye');
+  faye.subscribe('/comet/messages/new', function (data) {
+    eval(data);
+  });
+});

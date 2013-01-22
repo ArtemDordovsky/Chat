@@ -1,0 +1,4 @@
+<% broadcast "/comet/messages/new" do %>
+$("#comet_chat").append("<%= escape_javascript render(@message) %>").scrollTop(9999);
+<% end %>
+$("#message_text").val("");

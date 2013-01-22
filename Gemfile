@@ -7,6 +7,7 @@ gem 'rails', '3.2.9'
 
 #gem 'mysql2'
 gem "pg"
+gem 'faye'
 
 
 # Gems used only for assets and not required
@@ -21,9 +22,11 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'nifty-generators'
 
 # To use ActiveModel has_secure_password
 gem "bcrypt-ruby", :require => "bcrypt"
+gem 'thin'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

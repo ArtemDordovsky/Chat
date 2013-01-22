@@ -24,7 +24,8 @@ body{
     bottom:100px;
 }
 
-#chat{
+#ajax_chat,
+#comet_chat{
     position: absolute;
     top:20px;
     bottom:400px;
