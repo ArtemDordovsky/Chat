@@ -1,5 +1,7 @@
 <% @messages.each do |message| %>
-  <p><%= message.created_at.strftime('%X') %>
+<div>
+  <%= message.created_at.strftime('%X') %>
   <%= message.user.email %>
-  <%= message.message_text %></p>
+  <%= message.message_text %>
+</div>
 <% end %>

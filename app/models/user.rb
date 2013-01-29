@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
+  TIME_ONLINE = 5.minutes
+
+  scope :online, where('updated_at > ?', TIME_ONLINE.ago)
+
   def self.authenticate(email, password)
     user = find_by_email(email)
     user if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
@@ -18,18 +22,6 @@ class User < ActiveRecord::Base
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
-    end
-  end
-
-  def self.users_online
-    find(users) if users
-
-  end
-
-  def self.users
-    sessions = ActiveRecord::SessionStore::Session.select([:data, :updated_at]).all
-    users_ids = sessions.inject([]) do |result, session|
-      result << session.data["user_id"] if session
     end
   end
 

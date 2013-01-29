@@ -1,1 +1,1 @@
-rvm use ruby-1.9.3-p327@Chat --create
+rvm use ruby-1.9.3-p374@Chat --create

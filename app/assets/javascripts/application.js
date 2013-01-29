@@ -14,15 +14,12 @@
 //= require jquery_ujs
 //= require_tree .
 $(function() {
+
   setInterval(
     function() {
       $.ajax({
         type: "GET",
-        url: "/ajax/messages/messages",
-        dataType: "html",
-        success: function(response) {
-          $("#ajax_chat").append(response).scrollTop(9999);
-        }
+        url: "/ajax/messages"
       })
     }, 2000);
 
@@ -30,11 +27,7 @@ $(function() {
     function() {
       $.ajax({
         type: "GET",
-        url: "/users/users_online",
-        dataType: "html",
-        success: function(response) {
-          $("#users_online").html(response)
-        }
+        url: "/users"
       })
     }, 10000);
 

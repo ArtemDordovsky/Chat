@@ -1,4 +1,4 @@
-<%= form_for(:message, :url => { :action => 'create' }, :remote => true) do |f| %>
+<%= form_for(:message, url: { action: 'create', controller: 'ajax/messages' }, remote: true) do |f| %>
   <div>
     <%= f.text_field :message_text, class: "message_text" %>
     <%= f.submit "Send Message"%>

@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  def index
+    @users = User.online
+  end
+
   def new
     @user = User.new
   end
@@ -10,13 +14,5 @@ class UsersController < ApplicationController
     else
       render "new"
     end
-  end
-
-  def show
-    @user = User.find(params[:id])
-  end
-
-  def users_online
-    @users_online = User.users_online || []
   end
 end
