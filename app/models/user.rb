@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   TIME_ONLINE = 5.minutes
 
-  scope :online, where('updated_at > ?', TIME_ONLINE.ago)
+  scope :online, lambda{ where('updated_at > ?', TIME_ONLINE.ago) }
 
   def self.authenticate(email, password)
     user = find_by_email(email)
