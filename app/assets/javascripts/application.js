@@ -12,27 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-$(function() {
-
-  setInterval(
-    function() {
-      $.ajax({
-        type: "GET",
-        url: "/ajax/messages"
-      })
-    }, 2000);
-
-  setInterval(
-    function() {
-      $.ajax({
-        type: "GET",
-        url: "/users"
-      })
-    }, 10000);
-
-  var faye = new Faye.Client('http://localhost:9292/faye');
-  faye.subscribe('/comet/messages/new', function (data) {
-    eval(data);
-  });
-});
+//= require_tree ./ajax
+//= require_tree ./comet

@@ -1,7 +1,6 @@
 class Comet::MessagesController < ApplicationController
   include TrackLastVisit
   before_filter :authenticate
-  before_filter :track
 
   def index
     @messages = Message.latest_posts(current_user.updated_at)
