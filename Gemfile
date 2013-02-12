@@ -29,6 +29,9 @@ gem 'nifty-generators'
 gem "bcrypt-ruby", :require => "bcrypt"
 gem 'thin'
 
+group :test, :development do
+  gem "rspec-rails", "~> 2.0"
+end
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
 
