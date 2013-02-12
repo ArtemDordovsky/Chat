@@ -1,1 +1,1 @@
-$('#users_online').html('<%= j render "users" %>').scrollTop(9999);
+$('#users_online').html('<%= escape_javascript render "users" %>').scrollTop(9999);

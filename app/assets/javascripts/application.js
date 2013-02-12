@@ -14,3 +14,6 @@
 //= require jquery_ujs
 //= require_tree ./ajax
 //= require_tree ./comet
+//= require_tree ./websocket
+//= require websocket_rails/main
+
